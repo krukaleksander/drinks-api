@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "AMD",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "outFile": "../index.js"
+    },
+    "files": [
+        "randomDrink.ts",
+
+    ]
+}

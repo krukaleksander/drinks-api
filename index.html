@@ -5,10 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drinks API</title>
+    <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="/css/style.min.css">
 </head>
 
 <body>
+    <div class="wrapper">
+        <header>
+            <div class="logo">
+                <h1 class="logo__title">Drinks API</h1>
+                <h2 class="logo__subtitle">feel free to find your favourite drink!</h2>
+            </div>
+        </header>
+        <main>
+            <section class="search">
+                <div class="search__input-wrapper">
+                    <input type="text" class="search__input">
+                    <button class="search__button">Search</button>
+                </div>
+                <div class="search__options-wrapper">
+                    <label class="search__options-label" for="search__options">Search by: </label>
+                    <select class="search__options" name="search__options" id="">
+                        <option value="name">Drink name</option>
+                        <option value="ingredient">Ingredient</option>
+                    </select>
+                </div>
 
+            </section>
+            <div class="search-result"></div>
+            <div class="random-drink">
+                <h3 class="random-drink__title">Random drink</h3>
+                <div class="drink">
+                    <h4 class="drink__name">Drink name</h4>
+                    <img src="https://www.thecocktaildb.com/images/media/drink/rsvtrr1472668201.jpg" alt=""
+                        class="drink__image">
+                    <p class="drink__par">What you need:</p>
+                    <ul class="drink__ingredients"></ul>
+                    <p class="drink__par">Description: </p>
+                    <p class="drink__description"></p>
+                </div>
+
+            </div>
+        </main>
+        <footer></footer>
+    </div>
+    <script src="index.js"></script>
 </body>
 
 </html>

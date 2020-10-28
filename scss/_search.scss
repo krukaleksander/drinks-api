@@ -1,0 +1,18 @@
+.search {
+    &__input-wrapper {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    &__input {
+        width: 200px;
+    }
+
+    &__button {
+        width: 100px;
+    }
+
+    &__options-wrapper {
+        margin: 10px;
+    }
+}

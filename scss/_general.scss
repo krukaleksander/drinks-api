@@ -1,0 +1,12 @@
+body {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(64, 193, 236, 1) 0%, rgba(106, 138, 232, 1) 100%, rgba(55, 44, 60, 1) 100%, rgba(39, 25, 46, 1) 100%);
+}
+
+.wrapper {
+    padding: 10px;
+    font-family: $main-font;
+    max-width: 95vw;
+    margin: 0 auto;
+    overflow: hidden;
+}

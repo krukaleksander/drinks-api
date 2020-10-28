@@ -1,0 +1,17 @@
+.logo {
+    padding-bottom: 10px;
+    border-bottom: 2px solid whitesmoke;
+    text-align: center;
+    margin-bottom: 10px;
+
+    &__title {
+        font-family: $title-font;
+        font-size: 35px;
+    }
+
+    &__subtitle {
+        letter-spacing: 2px;
+        color: rgb(32, 25, 25);
+        line-height: 140%;
+    }
+}
