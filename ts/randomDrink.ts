@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let drinkResponse: {
         strDrink: string,
         strDrinkThumb: string,
-        strInstructions: string
+        strInstructions: string,
     };
 
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -22,6 +22,27 @@ document.addEventListener('DOMContentLoaded', () => {
             drinkName.innerHTML = drinkResponse.strDrink;
             drinkImage.setAttribute('src', drinkResponse.strDrinkThumb);
             drinkDescription.innerHTML = drinkResponse.strInstructions;
+
+        })
+        .then(() => {
+            let arrayOfIngredients = [];
+            let ingredientsAndMeasures = [];
+            const regexIngredients = /strIngredient/;
+            for (const property in drinkResponse) {
+                if (property.match(regexIngredients) && drinkResponse[property] !== null) {
+                    arrayOfIngredients.push(`<span>${drinkResponse[property]}</span>`);
+                }
+            };
+
+            arrayOfIngredients.forEach((ingredient, i) => {
+                if (drinkResponse[`strMeasure${i + 1}`] !== null) {
+                    ingredientsAndMeasures.push(`<div><span>${drinkResponse[`strMeasure${i + 1}`]}</span> ${ingredient}</div>`);
+                }
+            })
+            drinkIngredients.innerHTML = ingredientsAndMeasures.join("");
+            console.log(arrayOfIngredients);
+            console.log(drinkResponse);
+            console.log(readyArray);
         })
         .catch(err => {
             if (err) {
