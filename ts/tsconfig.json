@@ -9,6 +9,7 @@
     },
     "files": [
         "randomDrink.ts",
+        "search.ts",
 
     ]
 }
