@@ -8,4 +8,26 @@
         font-family: $title-font;
     }
 
+    &__next {
+        margin: 10px 0px;
+        min-height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            padding: 10px 15px;
+            font-weight: bolder;
+            border: 1px solid gray;
+            border-radius: 5px;
+            transition: .5s;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(183, 236, 247);
+                color: rgb(45, 49, 53);
+            }
+        }
+    }
+
 }

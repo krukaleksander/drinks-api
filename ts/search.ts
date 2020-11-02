@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.search__button').addEventListener('click', () => {
         const searchText: HTMLInputElement = document.querySelector('.search__input');
 
-        let arrayOfDrinks: any[];
-        let arrayOfDrinksHTML = [];
+        let arrayOfDrinks: any[] = [];
+        let arrayOfDrinksHTML: string[] = [];
 
         const { value: searchValue } = searchText;
 
@@ -12,19 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then(drinks => arrayOfDrinks = drinks.drinks)
                 .then(() => {
-                    arrayOfDrinks.forEach(drink => {
-                        arrayOfDrinksHTML.push(`
-                        <div class="drink">
-                                <h4 class="drink__name">${drink.strDrink}</h4>
-                                <img src="${drink.strDrinkThumb}" alt=""
-                                    class="drink__image">
-                                <p class="drink__par">What you need:</p>
-                                <ul class="drink__ingredients"></ul>
-                                <p class="drink__par">Description: ${drink.strInstructions}</p>
-                                <p class="drink__description"></p>
-                            </div>            
-                        `)
-                    });
+                    if (arrayOfDrinks) {
+                        arrayOfDrinks.forEach(drink => {
+                            arrayOfDrinksHTML.push(`
+                            <div class="drink">
+                                    <h4 class="drink__name">${drink.strDrink}</h4>
+                                    <img src="${drink.strDrinkThumb}" alt=""
+                                        class="drink__image">
+                                    <p class="drink__par">What you need:</p>
+                                    <ul class="drink__ingredients">${getIngredients(drink, false)}</ul>
+                                    <p class="drink__par">Description: ${drink.strInstructions}</p>
+                                    <p class="drink__description"></p>
+                                </div>            
+                            `)
+                        });
+                    } else {
+                        arrayOfDrinksHTML.push(`<p class="search-result__nothing">Found nothing.</p>`)
+                    }
+
 
                     document.querySelector('.search-result').innerHTML = arrayOfDrinksHTML.join(" ")
                 })

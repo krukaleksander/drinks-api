@@ -3,6 +3,7 @@
     background-color: rgba(245, 245, 245, 0.746);
     border-radius: 10px;
     padding: 10px;
+    margin-bottom: 10px;
 
     &__name {
         font-size: 18px;
@@ -15,5 +16,26 @@
         display: block;
         margin: 0 auto;
         border-radius: 2px;
+    }
+
+    &__par {
+        font-size: 17px;
+
+    }
+
+    &__ingredients {
+        border-top: 1px solid rgb(176, 176, 223);
+        border-bottom: 1px solid rgb(176, 176, 223);
+        padding: 5px 0px;
+
+        div {
+            span:nth-child(1) {
+                font-weight: bolder;
+            }
+
+            span:nth-child(2) {
+                color: rgb(110, 95, 95);
+            }
+        }
     }
 }

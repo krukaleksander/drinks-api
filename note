@@ -1,0 +1,22 @@
+1. Wyszukiwanie pod nazwie drinka
+
+Wyszukiwanie zwraca tablicę obiektów. Częściowe trafienie również jest ujmowane.
+Należy napisać funkcje podpiętą pod btn szukający, która będzie fetchowała po nazwie
+a następnie w diva search-result wrzucała wyniki. każdy wynik ma być tak zmapowany aby
+utworzył strukturę karty. 
+Będzie trzeba wyizolować z random drinks funkcje odpowiadające za listowanie składników
+i doklejanie do nich objętości. 
+
+2. Wyszukiwanie pod nazwie składnika
+
+Następny etap, zrób pierwszy.
+
+
+
+// dodaj css
+
+// jest problem, że random drinka dodaje do pierwszego diva z gory, trzeba określić żeby 
+to jednak robił w randomie
+
+// zrobić spinnera przed dodaniem się zdjęcia żeby ładniej wyglądało
+

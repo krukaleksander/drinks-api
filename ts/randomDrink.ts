@@ -1,5 +1,28 @@
 let drinkName: HTMLBodyElement, drinkIngredients: HTMLBodyElement, drinkImage: HTMLBodyElement, drinkDescription: HTMLBodyElement;
 
+const getIngredients = (drinkResponse: any, drinkIngredients: any) => {
+    let arrayOfIngredients = [];
+    let ingredientsAndMeasures: string[] = [];
+    const regexIngredients = /strIngredient/;
+    for (const property in drinkResponse) {
+        if (property.match(regexIngredients) && drinkResponse[property] !== null) {
+            arrayOfIngredients.push(`<span>${drinkResponse[property]}</span>`);
+        }
+    };
+
+    arrayOfIngredients.forEach((ingredient, i) => {
+        if (drinkResponse[`strMeasure${i + 1}`] !== null) {
+            ingredientsAndMeasures.push(`<div><span>${drinkResponse[`strMeasure${i + 1}`]}</span> ${ingredient}</div>`);
+        }
+    })
+    if (drinkIngredients) {
+        drinkIngredients.innerHTML = ingredientsAndMeasures.join("");
+    } else {
+        return ingredientsAndMeasures.join("");
+    }
+
+}
+
 const getRandomDrink = () => {
     drinkName = document.querySelector('.drink__name');
     drinkImage = document.querySelector('.drink__image');
@@ -21,21 +44,7 @@ const getRandomDrink = () => {
             drinkImage.setAttribute('src', drinkResponse.strDrinkThumb);
             drinkDescription.innerHTML = drinkResponse.strInstructions;
 
-            let arrayOfIngredients = [];
-            let ingredientsAndMeasures: string[] = [];
-            const regexIngredients = /strIngredient/;
-            for (const property in drinkResponse) {
-                if (property.match(regexIngredients) && drinkResponse[property] !== null) {
-                    arrayOfIngredients.push(`<span>${drinkResponse[property]}</span>`);
-                }
-            };
-
-            arrayOfIngredients.forEach((ingredient, i) => {
-                if (drinkResponse[`strMeasure${i + 1}`] !== null) {
-                    ingredientsAndMeasures.push(`<div><span>${drinkResponse[`strMeasure${i + 1}`]}</span> ${ingredient}</div>`);
-                }
-            })
-            drinkIngredients.innerHTML = ingredientsAndMeasures.join("");
+            getIngredients(drinkResponse, drinkIngredients);
 
         })
         .catch(err => {
