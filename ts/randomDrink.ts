@@ -1,5 +1,7 @@
 let drinkName: HTMLBodyElement, drinkIngredients: HTMLBodyElement, drinkImage: HTMLBodyElement, drinkDescription: HTMLBodyElement;
 
+const spinner: HTMLElement = document.getElementById("spinner");
+
 const getIngredients = (drinkResponse: any, drinkIngredients: any) => {
     let arrayOfIngredients = [];
     let ingredientsAndMeasures: string[] = [];
@@ -24,10 +26,10 @@ const getIngredients = (drinkResponse: any, drinkIngredients: any) => {
 }
 
 const getRandomDrink = () => {
-    drinkName = document.querySelector('.drink__name');
-    drinkImage = document.querySelector('.drink__image');
-    drinkIngredients = document.querySelector('.drink__ingredients');
-    drinkDescription = document.querySelector('.drink__description');
+    drinkName = document.querySelector('.random-drink .drink__name');
+    drinkImage = document.querySelector('.random-drink .drink__image');
+    drinkIngredients = document.querySelector('.random-drink .drink__ingredients');
+    drinkDescription = document.querySelector('.random-drink .drink__description');
 
     let drinkResponse: {
         strDrink: string,
@@ -35,12 +37,15 @@ const getRandomDrink = () => {
         strInstructions: string,
         [key: string]: string;
     };
-
+    drinkImage.style.display = 'none';
+    spinner.removeAttribute('hidden');
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
         .then(response => response.json())
         .then(data => drinkResponse = data.drinks[0])
         .then(() => {
             drinkName.innerHTML = drinkResponse.strDrink;
+            spinner.setAttribute('hidden', '');
+            drinkImage.style.display = 'block';
             drinkImage.setAttribute('src', drinkResponse.strDrinkThumb);
             drinkDescription.innerHTML = drinkResponse.strInstructions;
 

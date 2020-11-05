@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.search__button').addEventListener('click', () => {
         const searchText: HTMLInputElement = document.querySelector('.search__input');
-
+        const resultContainer: HTMLElement = document.querySelector('.search-result');
         let arrayOfDrinks: any[] = [];
         let arrayOfDrinksHTML: string[] = [];
 
@@ -17,8 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             arrayOfDrinksHTML.push(`
                             <div class="drink">
                                     <h4 class="drink__name">${drink.strDrink}</h4>
+                                    <div class="drink__image-container">
+                                    <div class="spinner spinner--search"></div>
+                            
                                     <img src="${drink.strDrinkThumb}" alt=""
-                                        class="drink__image">
+                                        class="drink__image"></div>
                                     <p class="drink__par">What you need:</p>
                                     <ul class="drink__ingredients">${getIngredients(drink, false)}</ul>
                                     <p class="drink__par">Description: ${drink.strInstructions}</p>
@@ -31,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
 
-                    document.querySelector('.search-result').innerHTML = arrayOfDrinksHTML.join(" ")
+                    resultContainer.innerHTML = arrayOfDrinksHTML.join(" ")
                 })
                 .catch(err => console.log('There is an error' + err));
             searchText.setAttribute('placeholder', '');
