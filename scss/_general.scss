@@ -9,4 +9,8 @@ body {
     max-width: 95vw;
     margin: 0 auto;
     overflow: hidden;
+
+    @include mq(large) {
+        max-width: 1000px;
+    }
 }

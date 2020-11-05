@@ -4,3 +4,25 @@ $title-font: 'Henny Penny',
 cursive;
 $main-font: 'Ubuntu',
 sans-serif;
+
+$breakpoints: (xsmall: (min-width: 460px),
+    small: (min-width: 640px),
+    medium: (min-width: 800px),
+    large: (min-width: 1024px),
+    xlarge: (min-width: 1200px),
+    xxlarge: (min-width: 1440px));
+
+
+@mixin mq($breakpoint) {
+    $size: map-get($map: $breakpoints, $key: $breakpoint);
+
+    @if($size) {
+        @media #{$size } {
+            @content;
+        }
+    }
+
+    @else {
+        @error '"#{$breakpoint}" - is this a good value?'
+    }
+}
