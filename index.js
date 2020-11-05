@@ -1,4 +1,5 @@
 var drinkName, drinkIngredients, drinkImage, drinkDescription;
+var spinner = document.getElementById("spinner");
 var getIngredients = function (drinkResponse, drinkIngredients) {
     var arrayOfIngredients = [];
     var ingredientsAndMeasures = [];
@@ -22,16 +23,20 @@ var getIngredients = function (drinkResponse, drinkIngredients) {
     }
 };
 var getRandomDrink = function () {
-    drinkName = document.querySelector('.drink__name');
-    drinkImage = document.querySelector('.drink__image');
-    drinkIngredients = document.querySelector('.drink__ingredients');
-    drinkDescription = document.querySelector('.drink__description');
+    drinkName = document.querySelector('.random-drink .drink__name');
+    drinkImage = document.querySelector('.random-drink .drink__image');
+    drinkIngredients = document.querySelector('.random-drink .drink__ingredients');
+    drinkDescription = document.querySelector('.random-drink .drink__description');
     var drinkResponse;
+    drinkImage.style.display = 'none';
+    spinner.removeAttribute('hidden');
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
         .then(function (response) { return response.json(); })
         .then(function (data) { return drinkResponse = data.drinks[0]; })
         .then(function () {
         drinkName.innerHTML = drinkResponse.strDrink;
+        spinner.setAttribute('hidden', '');
+        drinkImage.style.display = 'block';
         drinkImage.setAttribute('src', drinkResponse.strDrinkThumb);
         drinkDescription.innerHTML = drinkResponse.strInstructions;
         getIngredients(drinkResponse, drinkIngredients);
@@ -50,6 +55,7 @@ document.getElementById('get-random-drink').addEventListener('click', function (
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.search__button').addEventListener('click', function () {
         var searchText = document.querySelector('.search__input');
+        var resultContainer = document.querySelector('.search-result');
         var arrayOfDrinks = [];
         var arrayOfDrinksHTML = [];
         var searchValue = searchText.value;
@@ -60,13 +66,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(function () {
                 if (arrayOfDrinks) {
                     arrayOfDrinks.forEach(function (drink) {
-                        arrayOfDrinksHTML.push("\n                            <div class=\"drink\">\n                                    <h4 class=\"drink__name\">" + drink.strDrink + "</h4>\n                                    <img src=\"" + drink.strDrinkThumb + "\" alt=\"\"\n                                        class=\"drink__image\">\n                                    <p class=\"drink__par\">What you need:</p>\n                                    <ul class=\"drink__ingredients\">" + getIngredients(drink, false) + "</ul>\n                                    <p class=\"drink__par\">Description: " + drink.strInstructions + "</p>\n                                    <p class=\"drink__description\"></p>\n                                </div>            \n                            ");
+                        arrayOfDrinksHTML.push("\n                            <div class=\"drink\">\n                                    <h4 class=\"drink__name\">" + drink.strDrink + "</h4>\n                                    <div class=\"drink__image-container\">\n                                    <div class=\"spinner spinner--search\"></div>\n                            \n                                    <img src=\"" + drink.strDrinkThumb + "\" alt=\"\"\n                                        class=\"drink__image\"></div>\n                                    <p class=\"drink__par\">What you need:</p>\n                                    <ul class=\"drink__ingredients\">" + getIngredients(drink, false) + "</ul>\n                                    <p class=\"drink__par\">Description: " + drink.strInstructions + "</p>\n                                    <p class=\"drink__description\"></p>\n                                </div>            \n                            ");
                     });
                 }
                 else {
                     arrayOfDrinksHTML.push("<p class=\"search-result__nothing\">Found nothing.</p>");
                 }
-                document.querySelector('.search-result').innerHTML = arrayOfDrinksHTML.join(" ");
+                resultContainer.innerHTML = arrayOfDrinksHTML.join(" ");
             })["catch"](function (err) { return console.log('There is an error' + err); });
             searchText.setAttribute('placeholder', '');
             searchText.value = '';

@@ -23,21 +23,17 @@
                     <input type="text" class="search__input">
                     <button class="search__button">Search</button>
                 </div>
-                <div class="search__options-wrapper">
-                    <label class="search__options-label" for="search__options">Search by: </label>
-                    <select class="search__options" name="search__options" id="">
-                        <option value="name">Drink name</option>
-                        <option value="ingredient">Ingredient</option>
-                    </select>
-                </div>
-
             </section>
             <div class="search-result"></div>
             <div class="random-drink">
                 <h3 class="random-drink__title">Random drink</h3>
                 <div class="drink">
                     <h4 class="drink__name">Drink name</h4>
-                    <img src="" alt="" class="drink__image">
+                    <div class="drink__image-container">
+                        <div hidden id="spinner" class="spinner"></div>
+                        <img src="" alt="" class="drink__image">
+                    </div>
+
                     <p class="drink__par">What you need:</p>
                     <ul class="drink__ingredients"></ul>
                     <p class="drink__par">Description: </p>

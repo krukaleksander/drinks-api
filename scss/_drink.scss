@@ -10,6 +10,11 @@
         text-align: center;
     }
 
+    &__image-container {
+        min-height: 200px;
+        position: relative;
+    }
+
     &__image {
         height: auto;
         max-width: 200px;
